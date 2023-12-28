@@ -1,6 +1,7 @@
 import React from 'react'
 import image from '../../Images/first_page_image.png'
 import logo from '../../Images/logo.jpg'
+import Crousal from './Crousal'
 
 const First_Page = () => {
   return (
@@ -52,6 +53,9 @@ const First_Page = () => {
           </div>
 
         </div>
+      </div>
+      <div>
+        <Crousal/>
       </div>
 
     </>

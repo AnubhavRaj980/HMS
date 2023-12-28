@@ -1,0 +1,13 @@
+.cardcontainer::-webkit-scrollbar{
+    height: 5px;width: 2px;
+}
+.cardcontainer::-webkit-scrollbar-track{
+    background: #f1f1f1;
+}
+.cardcontainer::-webkit-scrollbar-thumb{
+    background: #888;
+    border-radius: 100vh;
+}
+.cardcontainer::-webkit-scrollbar-thumb:hover{
+    background: #555;
+}
