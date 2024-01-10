@@ -1,13 +1,29 @@
-import React from 'react'
+import React, {useState} from 'react'
 import logo from '../../Images/logo.jpg'
 import arrow_icon from '../../Images/forward_arrow_Icon.png'
 import google_icon from '../../Images/google_icon.jpg'
+import Login from './Login';
 
-const Logup = () => {
+const Logup = ({onClose}) => {
+  const [showSignUp, setShowSignUp] = useState(true);
+  const [showSignIn, setShowSignIn] = useState(false);
+
+  const handleSignInClick = () => {
+    setShowSignUp(false);
+    setShowSignIn(true);
+  };
+
+  const closeModals = () => {
+    onClose();
+  };
   return (
     <>
+    {showSignUp && (<div className='fixed inset-0 z-40 bg-white bg-opacity-75 transition-opacity duration-300'>
       <div className='flex justify-center items-center h-screen'>
-        <div className='relative flex flex-col border-8 border-slate-600 rounded-md h-[43rem] w-[30rem] px-8'>
+        <div className='relative flex flex-col border-8 border-slate-600 rounded-md h-[43rem] w-[30rem] px-8 bg-white'>
+
+          {/* -----------------------Close Button------------------------- */}
+          <button onClick={onClose} className='absolute top-0 right-0 m-2'>X</button>
 
           {/* -----------------------Logo------------------------- */}
           <div className='absolute flex flex-initial w-[23rem] top-[32px] justify-center '>
@@ -20,7 +36,8 @@ const Logup = () => {
               Sign UP
             </div>
             <div>
-              <span className='text-gray-500'>Already Account? </span><span className='font-semibold'>Sign In</span>
+              <span className='text-gray-500'>Already Account? </span><button className='font-semibold' onClick={handleSignInClick}>
+                Sign In</button>
             </div>
           </div>
 
@@ -31,7 +48,7 @@ const Logup = () => {
             {/* ---------------------Name-------------------- */}
             <div className='font-semibold'>Name</div>
             <div className='my-[8px]'>
-              <input type="text " className='top-[18rem] rounded-md border-2 border-slate-400 p-[5px] w-[25rem]' placeholder='Email' />
+              <input type="text " className='top-[18rem] rounded-md border-2 border-slate-400 p-[5px] w-[25rem]' placeholder='Name' />
             </div>
 
             {/* -----------------------------Email Address--------------------- */}
@@ -67,6 +84,8 @@ const Logup = () => {
           </div>
         </div>
       </div>
+      </div>)}
+      {showSignIn && <Login onClose={closeModals} />}
     </>
   )
 }

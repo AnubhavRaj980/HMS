@@ -1,13 +1,31 @@
-import React from 'react'
+import React,{useState} from 'react'
 import logo from '../../Images/logo.jpg'
 import arrow_icon from '../../Images/forward_arrow_Icon.png'
 import google_icon from '../../Images/google_icon.jpg'
+import Logup from './Logup'
 
-const Login = () => {
+const Login = ({onClose}) => {
+  const [showSignIn, setShowSignIn] = useState(true);
+  const [showSignUp, setShowSignUp] = useState(false);
+  
+
+  const handleSignInClick = () => { 
+    setShowSignIn(false)
+    setShowSignUp(true);
+   ;
+  };
+
+  const closeModals = () => {
+    onClose();
+  };
   return (
     <>
-      <div className='flex justify-center items-center h-screen'>
-        <div className='relative flex flex-col border-8 border-slate-600 rounded-md h-[40rem] w-[30rem] px-8'>
+    {showSignIn &&( <div className='fixed inset-0 z-40 bg-white bg-opacity-75 transition-opacity duration-300'>
+      <div className='flex justify-center items-center h-screen' >
+        <div className='relative flex flex-col border-8 border-slate-600 rounded-md h-[40rem] w-[30rem] px-8 bg-white'>
+
+            {/* -----------------------Close Button------------------------- */}
+            <button onClick={onClose} className='absolute top-0 right-0 m-2'>X</button>
 
           {/* -----------------------Logo------------------------- */}
           <div className='absolute flex flex-initial w-[25rem] top-[32px] justify-center '>
@@ -20,7 +38,8 @@ const Login = () => {
               Sign In
             </div>
             <div>
-              <span className='text-gray-500'>New User? </span><span className='font-semibold'>Sign Up</span>
+              <span className='text-gray-500'>New User? </span><button className='font-semibold' onClick={handleSignInClick}>
+                Sign Up</button>
             </div>
           </div>
 
@@ -60,6 +79,8 @@ const Login = () => {
           </div>
         </div>
       </div>
+      </div>)}
+      {showSignUp && <Logup onClose={closeModals} />}
     </>
   )
 }
