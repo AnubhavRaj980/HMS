@@ -3,10 +3,13 @@ import logo from '../../Images/logo.jpg'
 import arrow_icon from '../../Images/forward_arrow_Icon.png'
 import google_icon from '../../Images/google_icon.jpg'
 import Logup from './Logup'
+import { useNavigate } from 'react-router-dom'
 
 const Login = ({onClose}) => {
   const [showSignIn, setShowSignIn] = useState(true);
   const [showSignUp, setShowSignUp] = useState(false);
+
+  const navigate = useNavigate();
   
 
   const handleSignInClick = () => { 
@@ -18,22 +21,28 @@ const Login = ({onClose}) => {
   const closeModals = () => {
     onClose();
   };
+
+  const handleClicksignin = () =>{
+    navigate('/firstpage');
+  };
+
+
   return (
     <>
     {showSignIn &&( <div className='fixed inset-0 z-40 bg-white bg-opacity-75 transition-opacity duration-300'>
       <div className='flex justify-center items-center h-screen' >
-        <div className='relative flex flex-col border-8 border-slate-600 rounded-md h-[40rem] w-[30rem] px-8 bg-white'>
+        <div className='flex flex-col border-8 border-slate-600 rounded-md h-[40rem] w-[30rem] px-8 bg-white'>
 
             {/* -----------------------Close Button------------------------- */}
-            <button onClick={onClose} className='absolute top-0 right-0 m-2'>X</button>
+            <button onClick={onClose} className='ml-[450px]'>X</button>
 
           {/* -----------------------Logo------------------------- */}
-          <div className='absolute flex flex-initial w-[25rem] top-[32px] justify-center '>
-            <img src={logo} alt="logo" className='h-[7rem]' />
+          <div className='flex flex-initial w-[25rem] ustify-center '>
+            <img src={logo} alt="logo" className='h-[7rem] mx-auto' />
           </div>
 
           {/* ---------------------------SignIn text----------------------  */}
-          <div className='absolute top-[10rem] w-[25rem]'>
+          <div className='w-[25rem]'>
             <div className='font-bold w-[25rem] text-[33px]'>
               Sign In
             </div>
@@ -45,7 +54,7 @@ const Login = ({onClose}) => {
 
           {/* --------------------------Email And Password------------------------------------ */}
 
-          <div className='absolute top-[16rem] w-[25rem]'>
+          <div className='w-[25rem]'>
 
             {/* ---------------------Email Address-------------------- */}
             <div className='font-semibold'>Email address</div>
@@ -59,7 +68,7 @@ const Login = ({onClose}) => {
               <div className='text-right'>Forget Password?</div>
             </div>
             <div className='my-[8px]'>
-              <input type="text " className='top-[18rem] rounded-md border-2 border-slate-400 p-[5px] w-[25rem]' placeholder='Email' />
+              <input type="text " className='rounded-md border-2 border-slate-400 p-[5px] w-[25rem]' placeholder='Password' />
             </div>
 
             {/* ------------------------Button---------------------------- */}
@@ -67,7 +76,11 @@ const Login = ({onClose}) => {
             <div className='flex flex-col '>
 
               {/* -----------------------------------SignIn----------------------- */}
-              <button className='rounded-md border-2 border-black bg-black mt-[20px] h-[38px] text-white font-semibold'>Sign In 
+              <button className='rounded-md border-2 border-slate-700 bg-slate-700 mt-[20px] h-[38px] text-white font-semibold
+              hover:bg-slate-800
+              active:bg-slate-900'
+              onClick={handleClicksignin}
+              >Sign In 
               <img src={arrow_icon} alt="forward_arrow_icon" className='inline-block ml-2' />
               </button>
 
